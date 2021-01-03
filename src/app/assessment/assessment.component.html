@@ -1,0 +1,51 @@
+<div class="row" style="text-align: center;margin-top: 10px;">
+
+  <div>
+    <mat-form-field appearance='outline'>
+      <mat-label>student id</mat-label>
+        <label>
+          <input matInput type = "text" [(ngModel)] = "student_id"/>
+        </label>
+    </mat-form-field>
+    <h3>for testing student id is = 'your name' + 'birth date'</h3>
+    <h3>If assessment dose not start please try with different student id</h3>
+  </div>
+
+  <div>
+    <mat-form-field appearance='outline'>
+    <mat-label>email id</mat-label>
+      <label>
+        <input matInput type = "text" [(ngModel)] = "email_id"/>
+      </label>
+  </mat-form-field>
+  </div>
+
+  <div>
+  <button mat-raised-button color='primary' (click)="startAssessment()">Start Assessment</button>
+  </div>
+
+</div>
+<div style="margin: 50px;">
+  <mat-card  *ngFor="let question of ass_data,index as i" style="margin: 20px"  [hidden]="assMode">
+    <div class="row">
+      <div class="col-auto me-auto" style="display: flex">
+        <h2>{{i+1}}</h2>
+        <h2 style="margin-left: 20px;" >{{question.question}}</h2>
+      </div>
+      <div class="col-auto">
+        <h2>{{question.marks}}</h2>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <ckeditor [(ngModel)]=question.answer  [hidden]="assMode"></ckeditor>
+
+      <input type = "file" [hidden]="assMode" accept="image/*" (change)="fileChange($event.target.files,question)"/>
+      <button *ngIf="question.ans_image" mat-raised-button color='primary' [hidden]="assMode" (click)="fileChangeUpload(question)" >upload image</button>
+
+    </div>
+  </mat-card>
+</div>
+<div style="text-align: center;">
+  <button mat-raised-button color='primary' (click)="submitAssessment()"  [hidden]="assMode">Submit</button>
+</div>

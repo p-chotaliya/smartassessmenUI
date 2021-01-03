@@ -1,0 +1,39 @@
+<div>
+  <mat-card style="margin: 50px;">
+  <table class="table  table-hover table-responsive" style="margin: 10px;text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">student id</th>
+        <th scope="col">student name</th>
+        <th scope="col">question</th>
+        <th scope="col">ans</th>
+        <th scope="col">ans image</th>
+        <th scope="col">total marks</th>
+        <th scope="col">obtain marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of ans_data">
+        <th scope="row">{{data.student_id}}</th>
+        <td>{{data.student_name}}</td>
+        <td>{{data.question}}</td>
+        <td><ckeditor [(ngModel)]=data.answer readOnly='true'></ckeditor></td>
+        <td>
+          <img *ngIf="data.image_link" class="img-thumbnail"  style="max-width: 200px;max-height: 200px;" src='http://127.0.0.1:3000/{{data.image_link}}' />
+        </td>
+        <td>{{data.marks}}</td>
+        <td>
+          <mat-form-field style="max-width: 50px;">
+          <mat-label>marks</mat-label>
+          <input matInput placeholder="marks" type='number' [(ngModel)]='data.obtain_marks'>
+          </mat-form-field>
+          <button mat-raised-button color='primary' (click)="uploadMarks(data)">upload</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </mat-card>
+  <div style="text-align: center;padding-bottom : 20px;">
+    <button mat-raised-button color='primary' (click)="assessmentcheked()" >Submit</button>
+  </div>
+</div>

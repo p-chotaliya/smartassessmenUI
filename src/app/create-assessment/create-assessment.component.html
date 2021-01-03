@@ -1,0 +1,44 @@
+<div>
+  <div style="text-align: center;">
+    <button mat-raised-button color="primary" style="margin-top: 50px;" class="create-ass-btn" (click)="open_create_ass_dialog()">Create Assessment</button>
+  </div>
+    <div>
+      <mat-card style="margin: 50px;">
+        <table class="table table-hover table-responsive" style="margin: 10px;text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Standerd</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">Start time</th>
+              <th scope="col">Total submission</th>
+              <th scope="col">Total marks</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ass_data of assessment_data">
+              <th scope="row">{{ass_data.ass_title}}</th>
+              <td>{{ass_data.sub_code}}</td>
+              <td>{{ass_data.std}}</td>
+              <td>{{ ass_data.start_date | date:'shortDate' }}</td>
+              <td>{{ ass_data.start_date | date: 'shortTime'}}</td>
+              <td>total submission</td>
+              <td>{{ass_data.marks}}</td>
+              <td>
+                <button mat-raised-button color="primary"
+                  [routerLink]="['/create-assessment',ass_data.ass_id,'edit']">Edit / add Question</button>
+                <button mat-raised-button color="primary"
+                  [routerLink]="['/assessment',ass_data.ass_id,'submission']" style="margin-left: 10px"
+                  matBadge="{{ass_data.total_sub}}" matBadgePosition="before" matBadgeColor="warn">Submission</button>
+                <button mat-raised-button color="warn"
+                  (click)="deleteAssessment(ass_data.ass_id)" style="margin-left: 10px;" >Delete</button>
+                <button mat-raised-button color="primary" [cdkCopyToClipboard]="ass_data.ass_link"  matTooltip="copy assessment link" style="margin-left: 10px;">share link</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </mat-card>
+      </div>
+</div>

@@ -1,0 +1,97 @@
+<div style="margin: 50px" class="row">
+  <div class="col">
+    <mat-form-field class="example-form-field">
+      <mat-label>Title</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_title">
+      </label>
+
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="example-form-field">
+      <mat-label>Subject</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_subject">
+      </label>
+
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="example-form-field">
+      <mat-label>Std</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_std">
+      </label>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="example-form-field">
+      <mat-label>marks</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_marks">
+      </label>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="example-form-field">
+      <mat-label>duration</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_duration">
+      </label>
+    </mat-form-field>
+  </div>
+  <div class="col">
+
+    <mat-form-field class="example-form-field">
+      <mat-label>passing marks</mat-label>
+      <label>
+        <input matInput type="text" [(ngModel)]="ass_passing_marks">
+      </label>
+    </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <label>
+          <input matInput [ngxMatDatetimePicker]="picker"
+                 placeholder="Choose a date" [(ngModel)]="start_date">
+        </label>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+      </mat-form-field>
+    </div>
+</div>
+<div style="text-align: center;">
+  <button mat-raised-button color="primary" (click)="editAssessment()">Update</button>
+  <button mat-raised-button color="primary" style="margin-left: 10px" (click)="open_add_question_dialog()">ADD Question</button>
+</div>
+
+<div>
+      <mat-card *ngFor="let question of question_data,index as i" style="margin: 20px">
+        <div class="row">
+            <mat-form-field class="example-form-field">
+              <mat-label>Question</mat-label>
+              <label>
+                <input matInput type="text" [(ngModel)]="question.question">
+              </label>
+            </mat-form-field>
+            <mat-form-field class="example-form-field">
+              <mat-label>Answer</mat-label>
+              <label>
+                <textarea style="resize: both;" matInput type="text" [(ngModel)]="question.ans"></textarea>
+              </label>
+            </mat-form-field>
+
+            <mat-form-field class="example-form-field">
+              <mat-label>Marks</mat-label>
+              <label>
+                <input matInput type="number" [(ngModel)]="question.marks">
+              </label>
+            </mat-form-field>
+            <div>
+            <button mat-raised-button color="primary" (click)="editQuestion(question)">Update</button>
+            <button mat-raised-button color="warn" (click)="deleteQuetion(question.q_id)">Delete</button>
+          </div>
+          </div>
+      </mat-card>
+</div>

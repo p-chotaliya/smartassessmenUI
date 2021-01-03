@@ -1,0 +1,53 @@
+<div class="row">
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Title</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_title">
+    </label>
+
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <mat-label>Subject</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_subject">
+    </label>
+
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <mat-label>Std</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_std">
+    </label>
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <mat-label>marks</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_marks">
+    </label>
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <mat-label>duration</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_duration">
+    </label>
+  </mat-form-field>
+  <mat-form-field class="example-form-field">
+    <mat-label>passing marks</mat-label>
+    <label>
+      <input matInput type="text" [(ngModel)]="ass_passing_marks">
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput [ngxMatDatetimePicker]="picker"
+             placeholder="Choose a date" [(ngModel)]="start_date">
+    </label>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="createAssessment()">create test</button>
+  <button mat-raised-button color="primary" (click)="onNoClick()" style='margin-left: 10px;' >close</button>
+</div>
